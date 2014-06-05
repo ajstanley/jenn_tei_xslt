@@ -1,0 +1,88 @@
+<?php
+
+/**
+ * @file
+ * Defines the install and uninstall hooks for this module.
+ * @todo
+ *   Factor out association_id and use the machine_name as key.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function tei_xslt_schema() {
+  $schema['tei_xslt_tei'] = array(
+    'description' => 'Stores uploaded xslts.',
+    'fields' => array(
+      'tei_id' => array(
+        'description' => 'Unique ID given to each tei',
+        'type' => 'serial',
+        'length' => 11,
+        'not null' => TRUE,
+      ),
+      'tei_name' => array(
+        'description' => 'The name of the tei file',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'tei_description' => array(
+        'description' => 'The description of the tei',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => FALSE,
+      ),
+      'tei' => array(
+        'description' => 'Uploaded tei',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('tei_id'),
+  );
+
+   $schema['tei_xslt_xslt'] = array(
+    'description' => 'Stores uploaded xslts.',
+    'fields' => array(
+      'xslt_id' => array(
+        'description' => 'Unique ID given to each xslt',
+        'type' => 'serial',
+        'length' => 11,
+        'not null' => TRUE,
+      ),
+      'xslt_name' => array(
+        'description' => 'The name of the xslt file',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'xslt_description' => array(
+        'description' => 'The description of the xslt',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => FALSE,
+      ),
+      'xslt' => array(
+        'description' => 'Uploaded xslt',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => FALSE,
+      ),
+      'css' => array(
+        'description' => 'Uploaded css',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => FALSE,
+      ),
+      'js' => array(
+        'description' => 'Uploaded js',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('xslt_id'),
+  );
+  return $schema;
+}

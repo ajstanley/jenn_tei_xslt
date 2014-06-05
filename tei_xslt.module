@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Define hooks for teis xslt module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function tei_xslt_menu() {
+  $items['tei_xslt/add/tei'] = array(
+    'title' => 'Add new TEI',
+    'description' => 'Adds new TEI to database.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tei_upload'),
+    'access arguments' => array('upload tei'),
+    'file' => 'includes/tei_upload.form.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tei_xslt/add/xslt'] = array(
+    'title' => 'Add new XSLT',
+    'description' => 'Adds new XSLT to database.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('xslt_upload'),
+    'access arguments' => array('upload tei'),
+    'file' => 'includes/tei_upload.form.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tei_xslt/choose/tei'] = array(
+    'title' => 'Show transformed tei',
+    'description' => 'Shows Transformed TEI',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tei_view'),
+    'access arguments' => array('view tei'),
+    'file' => 'includes/tei_display.form.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tei_xslt/show/tei'] = array(
+    'page callback' => 'display_transformed_tei',
+    'access arguments' => array('view tei'),
+    'file' => 'includes/tei_display.form.inc',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function tei_xslt_permission() {
+  return array(
+    'upload tei' => array(
+      'title' => t('Upload TEI and XSLTs'),
+      'description' => t('Allows users to upload fresh inputs'),
+    ),
+    'view tei' => array(
+      'title' => t('View TEI'),
+      'description' => t('Allows users to view TEI'),
+    ),
+  );
+}

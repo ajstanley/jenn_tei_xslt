@@ -1,0 +1,4 @@
+name = TEI XSLT Transformation
+description = Transforms TEI to HTML with xslts
+core = 7.x
+package = Jenn Custom
